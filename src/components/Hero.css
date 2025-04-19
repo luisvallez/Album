@@ -1,0 +1,155 @@
+/* Base Styles (Mobile First - Portrait View) */
+.hero-section {
+  height: 100vh;
+  /* Mobile: Use the sharp image as background */
+  background-image: url("../assets/solo.jpeg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Content at bottom */
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  padding-bottom: 50px; /* Adjust as needed */
+  overflow: hidden; /* Prevent potential blur overflow */
+}
+
+/* Hide the explicit image tag on mobile */
+.hero-vertical-image {
+  display: none;
+}
+
+/* Keep the overlay for text contrast on mobile */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  ); /* Darker gradient from bottom */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* Above overlay */
+  padding: 20px;
+  width: 90%;
+  margin-bottom: 50px;
+}
+
+/* Remove h1, p styles if not present in JSX */
+/* .hero-content h1 { ... } */
+/* .hero-content p { ... } */
+
+/* Spotify link styles (keep as they were) */
+.spotify-link {
+  display: inline-block;
+  background-color: beige;
+  backdrop-filter: blur(1px); /* Adjust blur amount */
+  color: rgb(77, 77, 74);
+  padding: 12px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 15px; /* Add some space above the button */
+}
+
+.spotify-link:hover,
+.spotify-link:focus {
+  transform: translateY(-2px);
+  outline: none;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.spotify-link:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for Wider Screens (Tablet/Desktop - Landscape/Wider View) */
+@media (width > 768px) {
+  .hero-section {
+    /* Ensure it still takes full viewport height */
+    height: 100vh;
+    /* Remove the sharp background image used on mobile */
+    background-image: none;
+    /* Use flexbox to center the sharp foreground image */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding-bottom: 0; /* Reset mobile padding */
+    position: relative; /* Needed for absolute positioning of children/pseudo-elements */
+    overflow: hidden; /* Prevent blur bleeding at edges */
+  }
+
+  /* Use pseudo-element for the full-screen blurred background */
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    /* Make it cover the entire section */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Use the correct image source */
+    background-image: url("../assets/solo.jpeg"); /* Updated path based on Hero.jsx */
+    background-size: cover;
+    background-position: center;
+    /* Apply blur and adjust brightness */
+    filter: blur(20px); /* Increased blur, slightly darker */
+    /* Ensure it's behind the sharp image and content */
+    z-index: 0;
+  }
+
+  /* Style the sharp vertical image placed ON TOP */
+  .hero-vertical-image {
+    display: block; /* Make it visible */
+    /* Constrain size to fit nicely within the viewport */
+    max-height: 80vh;
+    max-width: 90%; /* Prevent it getting too wide */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the whole image is visible */
+    /* Position it above the blurred background */
+    z-index: 1;
+    /* Add shadow for separation */
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+    border-radius: 4px; /* Optional: slightly rounded corners */
+  }
+
+  /* Position the content (Spotify link) */
+  .hero-content {
+    position: absolute; /* Position relative to .hero-section */
+    bottom: 6vh; /* Position from the bottom of the viewport */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    /* Ensure it's on top of everything */
+    z-index: 2;
+    width: auto; /* Let content determine width */
+    /* Optional: Add background for better contrast if needed */
+    padding: 15px 30px;
+    border-radius: 50px; /* Match button style */
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  /* Ensure Spotify link styles are appropriate */
+  .spotify-link {
+    margin-top: 0; /* Remove any top margin added for mobile */
+    /* Styles like color, font-size etc. are inherited or kept from base */
+  }
+}
+
+/* Optional: Media query for very wide screens if needed */
+/* @media (min-width: 1200px) { ... } */

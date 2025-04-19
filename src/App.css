@@ -1,0 +1,46 @@
+/* Remove body styles if they are now in index.css */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: rgb(
+    61,
+    59,
+    53
+  ); /* Set a base background for the app container */
+}
+
+.content {
+  flex: 1; /* Makes the content area grow */
+  padding: 40px 20px; /* More vertical padding */
+  max-width: 960px; /* Slightly wider max-width */
+  width: 90%; /* Use percentage width for responsiveness */
+  margin: 40px auto; /* Add top/bottom margin */
+  /* background-color: white; */ /* Can remove if App background is white */
+  /* box-shadow: 0 2px 15px rgba(0,0,0,0.1); */ /* Softer shadow */
+}
+
+/* Example: Add styles for sections within .content */
+.content section {
+  margin-bottom: 40px;
+}
+
+.content h2 {
+  margin-bottom: 20px;
+  color: #555;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* Basic responsive adjustments */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    letter-spacing: 4px;
+  }
+  .content {
+    width: 95%;
+    padding: 30px 15px;
+    margin: 30px auto;
+  }
+}
